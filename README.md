@@ -255,7 +255,7 @@ browser's own PDF viewer behind the `#page=N` links.
 
 The page-reading approach comes from an earlier PDF review project of mine (source-linked extraction of figures
 from reports): read the text layer first and OCR only pages with fewer than 24 characters, English tesseract.js
-with a local language file (`ocr/eng.traineddata.gz`, Apache-2.0 licensed tesseract data), evidence records that
+with a [bundled English OCR model](ocr/THIRD_PARTY_NOTICES.md), evidence records that
 keep a page-normalised box, Decimal-based number parsing, and the idea of reporting `conflict` / `limited` /
 `missing` instead of forcing an answer (here: not met / insufficient). The agent loop, orientation recovery,
 monitoring and the hard set are new in this repo.
