@@ -1,0 +1,18 @@
+# Hand-labelled expected outcomes. `pages` lists every (doc, page) a correct
+# citation must include. `tags` drive the failure-category breakdown.
+gold:
+  - {id: REQ-1.1, verdict: met, pages: {declaration_of_conformity: [1]}, tags: [text]}
+  - {id: REQ-1.2, verdict: met, pages: {declaration_of_conformity: [1], test_report: [3], risk_assessment: [1]}, tags: [cross_doc]}
+  - {id: REQ-2.1, verdict: met, pages: {declaration_of_conformity: [1], test_report: [3]}, tags: [cross_doc]}
+  - {id: REQ-2.2, verdict: not_met, pages: {declaration_of_conformity: [1], test_report: [3]}, tags: [cross_doc]}
+  - {id: REQ-2.3, verdict: met, pages: {test_report: [3, 11]}, tags: [ocr, cross_doc]}
+  - {id: REQ-3.1, verdict: met, pages: {test_report: [7]}, tags: [table, unit]}
+  - {id: REQ-3.2, verdict: met, pages: {test_report: [8]}, tags: [table]}
+  - {id: REQ-3.3, verdict: not_met, pages: {test_report: [9]}, tags: [table, pass_cell_is_wrong]}
+  - {id: REQ-3.4, verdict: met, pages: {test_report: [10]}, tags: [table]}
+  - {id: REQ-4.1, verdict: met, pages: {declaration_of_conformity: [2]}, tags: [text]}
+  - {id: REQ-4.2, verdict: met, pages: {declaration_of_conformity: [3]}, tags: [text]}
+  - {id: REQ-5.1, verdict: met, pages: {risk_assessment: [4]}, tags: [table]}
+  - {id: REQ-5.2, verdict: met, pages: {risk_assessment: [4]}, tags: [table]}
+  - {id: REQ-5.3, verdict: not_met, pages: {risk_assessment: [5]}, tags: [table]}
+  - {id: REQ-6.1, verdict: insufficient, pages: {}, tags: [absence]}

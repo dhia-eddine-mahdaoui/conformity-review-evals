@@ -1,0 +1,108 @@
+# Requirements checklist for the fictional AW-200 technical file.
+# kind selects the check: consistency | limit | evidence_present | risk_table | semantic
+requirements:
+  - id: REQ-1.1
+    text: The declaration of conformity states the manufacturer name and address.
+    kind: evidence_present
+    docs: [declaration_of_conformity]
+    patterns: ['^Manufacturer:\s*\S+', '^Address:\s*\S+']
+
+  - id: REQ-1.2
+    text: The model designation is identical in the declaration, the test report and the risk assessment.
+    kind: consistency
+    sources:
+      - {doc: declaration_of_conformity, label: '^model\b', capture: 'AW-\d+'}
+      - {doc: test_report, label: '^model\b', capture: 'AW-\d+'}
+      - {doc: risk_assessment, label: '^model\b', capture: 'AW-\d+'}
+
+  - id: REQ-2.1
+    text: Rated voltage is stated in the declaration and matches the test report.
+    kind: consistency
+    sources:
+      - {doc: declaration_of_conformity, label: 'rated voltage', family: volt}
+      - {doc: test_report, label: 'rated input voltage', family: volt}
+
+  - id: REQ-2.2
+    text: Rated frequency is stated in the declaration and matches the test report.
+    kind: consistency
+    sources:
+      - {doc: declaration_of_conformity, label: 'rated frequency', family: hertz}
+      - {doc: test_report, label: 'rated frequency', family: hertz}
+
+  - id: REQ-2.3
+    text: Rated input current on the nameplate (scanned annex) matches the rating table of the test report.
+    kind: consistency
+    sources:
+      - {doc: test_report, label: 'rated input current', family: ampere, kinds: [table, text]}
+      - {doc: test_report, label: 'rated current', family: ampere, kinds: [ocr]}
+
+  - id: REQ-3.1
+    text: Insulation resistance is at least 100 MOhm at every test point.
+    kind: limit
+    doc: test_report
+    row: '^insulation resistance'
+    op: '>='
+    limit: 100 MOhm
+
+  - id: REQ-3.2
+    text: Dielectric strength was tested at 1500 V AC for 60 s with no breakdown.
+    kind: evidence_present
+    docs: [test_report]
+    patterns: ['dielectric strength[^\n]*\b1500\b[^\n]*V AC[^\n]*60 s[^\n]*no breakdown']
+
+  - id: REQ-3.3
+    text: Touch current does not exceed 0.5 mA in any condition.
+    kind: limit
+    doc: test_report
+    row: '^touch current'
+    op: '<='
+    limit: 0.5 mA
+
+  - id: REQ-3.4
+    text: Temperature rise does not exceed 40 K at any measuring point.
+    kind: limit
+    doc: test_report
+    row: '^temperature rise'
+    op: '<='
+    limit: 40 K
+
+  - id: REQ-4.1
+    text: The declaration cites the general safety standard EXS 1000-1.
+    kind: evidence_present
+    docs: [declaration_of_conformity]
+    patterns: ['EXS 1000-1:\d{4}']
+
+  - id: REQ-4.2
+    text: The declaration is signed on behalf of the manufacturer and carries a date of issue.
+    kind: evidence_present
+    docs: [declaration_of_conformity]
+    patterns: ['^Signed for and on behalf of:\s*\S+', '^Date of issue:\s*\d{4}-\d{2}-\d{2}']
+
+  - id: REQ-5.1
+    text: The risk assessment covers electric shock and shows an acceptable, verified residual risk.
+    kind: semantic
+    docs: [risk_assessment]
+    retrieve: ['electric shock']
+    heuristic:
+      accept: '\|\s*(Low|Medium)\s*\|\s*V-\d+\s*$'
+      reject: '\|\s*High\s*\|\s*(Pending|-|None)\s*$'
+
+  - id: REQ-5.2
+    text: The risk assessment covers overheating and shows an acceptable, verified residual risk.
+    kind: semantic
+    docs: [risk_assessment]
+    retrieve: ['overheating']
+    heuristic:
+      accept: '\|\s*(Low|Medium)\s*\|\s*V-\d+\s*$'
+      reject: '\|\s*High\s*\|\s*(Pending|-|None)\s*$'
+
+  - id: REQ-5.3
+    text: Every hazard with High residual risk has a completed verification record.
+    kind: risk_table
+    doc: risk_assessment
+
+  - id: REQ-6.1
+    text: The test report states the accreditation number of the test laboratory.
+    kind: evidence_present
+    docs: [test_report]
+    patterns: ['accredit\w*[^\n]{0,40}(no\.?|number|certificate)[:\s]+[A-Z0-9-]{4,}']

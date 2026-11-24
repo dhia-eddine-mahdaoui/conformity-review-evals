@@ -1,0 +1,9 @@
+{
+  "name": "crev-ocr",
+  "private": true,
+  "type": "module",
+  "description": "Local English OCR helper (tesseract.js) used when a PDF page has no text layer",
+  "dependencies": {
+    "tesseract.js": "7.0.0"
+  }
+}
