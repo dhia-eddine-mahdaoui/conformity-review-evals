@@ -33,6 +33,7 @@ class Result:
     rationale: str = ""
     diagnostics: list = field(default_factory=list)
     check: str = ""
+    trace: list = field(default_factory=list)  # agent mode: one dict per tool call
 
     def to_dict(self):
         return asdict(self)
@@ -46,6 +47,7 @@ class DocInfo:
     chunks: list = field(default_factory=list)
     ocr_pages: list = field(default_factory=list)
     ocr_failed: list = field(default_factory=list)
+    ocr_rotated: dict = field(default_factory=dict)  # page -> clockwise degrees applied before OCR
 
 
 @dataclass

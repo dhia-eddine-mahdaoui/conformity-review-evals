@@ -21,7 +21,7 @@ import pymupdf
 
 W, H = 595, 842
 ML = 50
-OUT = Path(sys.argv[1] if len(sys.argv) > 1 else Path(__file__).resolve().parents[1] / "data" / "techfile")
+OUT = Path(sys.argv[1]) if (__name__ == "__main__" and len(sys.argv) > 1) else Path(__file__).resolve().parents[1] / "data" / "techfile"
 
 FILLER = [
     "The tests were carried out on a single production sample selected by the applicant.",
@@ -105,23 +105,30 @@ class Pg:
         self.para(" ".join(rng.sample(FILLER, k)))
 
 
-def scan_page(doc, lines):
-    """Render a page to a noisy grayscale bitmap and insert it as the only content."""
+def scan_page(doc, lines, title="EQUIPMENT NAMEPLATE - PHOTOCOPY", footer="Test report TR-AW200-001 - annex scan",
+              rotate=False, noise=9, skew=0):
+    """Render a page to a noisy grayscale bitmap and insert it as the only content.
+
+    rotate=True stores the bitmap turned by 90 degrees on a landscape page, as when a
+    sheet is fed sideways into a scanner."""
     tmp = pymupdf.open()
     t = tmp.new_page(width=W, height=H)
-    t.insert_text((ML, 60), "EQUIPMENT NAMEPLATE - PHOTOCOPY", fontname="cobo", fontsize=15)
+    morph = (pymupdf.Point(W / 2, H / 2), pymupdf.Matrix(skew)) if skew else None  # small tilt, as a crooked sheet
+    t.insert_text((ML, 60), title, fontname="cobo", fontsize=15, morph=morph)
     y = 130
-    t.draw_rect(pymupdf.Rect(ML, 100, W - ML, 100 + 40 * len(lines) + 30), width=1.5)
+    t.draw_rect(pymupdf.Rect(ML, 100, W - ML, 100 + 40 * len(lines) + 30), width=1.5, morph=morph)
     for line in lines:
-        t.insert_text((ML + 20, y + 10), line, fontname="cour", fontsize=17)
+        t.insert_text((ML + 20, y + 10), line, fontname="cour", fontsize=17, morph=morph)
         y += 40
-    t.insert_text((ML, H - 30), "Test report TR-AW200-001 - annex scan", fontname="cour", fontsize=9)
+    t.insert_text((ML, H - 30), footer, fontname="cour", fontsize=9)
     pix = t.get_pixmap(dpi=130, colorspace=pymupdf.csGRAY)
     arr = np.frombuffer(pix.samples, dtype=np.uint8).reshape(pix.height, pix.width).astype(np.float32)
     rs = np.random.RandomState(3)
-    arr = np.clip(arr * 0.9 + 12 + rs.normal(0, 9, arr.shape), 0, 255).astype(np.uint8)
-    noisy = pymupdf.Pixmap(pymupdf.csGRAY, pix.width, pix.height, arr.tobytes(), False)
-    page = doc.new_page(width=W, height=H)
+    arr = np.clip(arr * 0.9 + 12 + rs.normal(0, noise, arr.shape), 0, 255).astype(np.uint8)
+    if rotate:
+        arr = np.ascontiguousarray(np.rot90(arr))
+    noisy = pymupdf.Pixmap(pymupdf.csGRAY, arr.shape[1], arr.shape[0], arr.tobytes(), False)
+    page = doc.new_page(width=H, height=W) if rotate else doc.new_page(width=W, height=H)
     page.insert_image(page.rect, stream=noisy.tobytes("png"))
 
 

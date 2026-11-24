@@ -81,12 +81,14 @@ def _extract_all(directory, ocr_mode):
                     sparse.append((page.number + 1, page.get_pixmap(dpi=200, colorspace=pymupdf.csGRAY).tobytes("png")))
                 per_page.append(raw)
             if sparse:
-                texts, engine = ocr.recognize([png for _, png in sparse], ocr_mode)
-                for (n, _), text in zip(sparse, texts):
+                texts, engine, angles = ocr.recognize_oriented([png for _, png in sparse], ocr_mode)
+                for (n, _), text, angle in zip(sparse, texts, angles):
                     if text is None:
                         info.ocr_failed.append(n)
                         continue
                     info.ocr_pages.append(n)
+                    if angle:
+                        info.ocr_rotated[n] = angle
                     lines = "\n".join(l.strip() for l in text.splitlines() if l.strip())
                     if lines:
                         per_page[n - 1].append(Chunk("", name, n, "ocr", lines, None))
@@ -99,5 +101,5 @@ def load_corpus(directory, chunker="v1", ocr_mode="auto"):
     docs = {}
     for name, (info, per_page) in raw.items():
         docs[name] = DocInfo(info.name, info.path, info.n_pages, chunkers.apply(chunker, name, per_page),
-                             list(info.ocr_pages), list(info.ocr_failed))
+                             list(info.ocr_pages), list(info.ocr_failed), dict(info.ocr_rotated))
     return Corpus(docs, chunker, engine)

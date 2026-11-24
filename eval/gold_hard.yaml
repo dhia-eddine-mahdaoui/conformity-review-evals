@@ -1,0 +1,30 @@
+# Hand-labelled outcomes for the harder file. See scripts/make_fixtures_hard.py for what is planted where.
+gold:
+  - {id: HRD-1.1, verdict: met, pages: {declaration: [1]}, tags: [text]}
+  - {id: HRD-1.2, verdict: not_met, pages: {declaration: [1], datasheet: [1], test_report: [3]}, tags: [cross_doc, conflict]}
+  - {id: HRD-2.1, verdict: met, pages: {declaration: [1], test_report: [3]}, tags: [cross_doc, unit]}
+  - {id: HRD-2.2, verdict: met, pages: {declaration: [1], test_report: [3]}, tags: [cross_doc, unit]}
+  - {id: HRD-2.3, verdict: not_met, pages: {declaration: [1], datasheet: [1]}, tags: [cross_doc, conflict]}
+  - {id: HRD-2.4, verdict: met, pages: {test_report: [3, 11]}, tags: [ocr, rotated_scan, cross_doc]}
+  - {id: HRD-2.5, verdict: not_met, pages: {declaration: [2], test_report: [3]}, tags: [cross_doc, conflict]}
+  - {id: HRD-2.6, verdict: met, pages: {declaration: [1], test_report: [3]}, tags: [cross_doc, table]}
+  - {id: HRD-3.1, verdict: not_met, pages: {test_report: [5]}, tags: [table, unit, pass_cell_is_wrong]}
+  - {id: HRD-3.2, verdict: met, pages: {test_report: [6]}, tags: [table, unit]}
+  - {id: HRD-3.3, verdict: not_met, pages: {test_report: [7]}, tags: [table, unit, distractor, pass_cell_is_wrong]}
+  - {id: HRD-3.4, verdict: met, pages: {test_report: [7]}, tags: [table, unit]}
+  - {id: HRD-3.5, verdict: not_met, pages: {test_report: [9]}, tags: [table, split_table, distractor, pass_cell_is_wrong]}
+  - {id: HRD-3.6, verdict: met, pages: {test_report: [9]}, tags: [borderless]}
+  - {id: HRD-3.7, verdict: met, pages: {test_report: [10]}, tags: [text, injection]}
+  - {id: HRD-3.8, verdict: not_met, pages: {test_report: [9]}, tags: [table, pass_cell_is_wrong]}
+  - {id: HRD-3.9, verdict: not_met, pages: {test_report: [12]}, tags: [ocr, scan_table]}
+  - {id: HRD-3.10, verdict: met, pages: {test_report: [6]}, tags: [table, unit]}
+  - {id: HRD-4.1, verdict: met, pages: {declaration: [2]}, tags: [text]}
+  - {id: HRD-4.2, verdict: insufficient, pages: {}, tags: [absence]}
+  - {id: HRD-4.3, verdict: met, pages: {test_report: [1]}, tags: [text]}
+  - {id: HRD-4.4, verdict: insufficient, pages: {}, tags: [absence, injection]}
+  - {id: HRD-5.1, verdict: not_met, pages: {risk_assessment: [4]}, tags: [table, split_table]}
+  - {id: HRD-5.2, verdict: met, pages: {risk_assessment: [3]}, tags: [table]}
+  - {id: HRD-5.3, verdict: met, pages: {risk_assessment: [3]}, tags: [table]}
+  - {id: HRD-2.7, verdict: met, pages: {declaration: [1], test_report: [5]}, tags: [cross_doc, words_for_numbers]}
+  - {id: HRD-3.12, verdict: met, pages: {test_report: [7]}, tags: [table, number_format]}
+  - {id: HRD-3.13, verdict: met, pages: {test_report: [13]}, tags: [ocr, scan_table, skewed_scan]}

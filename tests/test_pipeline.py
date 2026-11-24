@@ -18,11 +18,6 @@ def run():
     return pipeline.run()
 
 
-@pytest.fixture(scope="module")
-def run_v2():
-    return pipeline.run(chunker="v2")
-
-
 def corpus_of(doc, kind, text, page=1):
     info = DocInfo(doc, doc + ".pdf", 1, [Chunk(f"{doc}:p{page}:c0", doc, page, kind, text)])
     return Corpus({doc: info}, "test", "none")
@@ -106,19 +101,19 @@ def test_gold_set_passes(run):
     assert ev["not_met"]["recall"] == 1.0 or skip
 
 
-def test_baseline_has_no_regressions(run):
-    base = evals.load_baseline()
+def test_baseline_has_no_regressions(suite_eval):
     if ocr.engine_name() == "none":
         pytest.skip("baseline recorded with OCR")
-    assert evals.compare(evals.evaluate(run), base)["ok"]
+    cmp = evals.compare(suite_eval, evals.load_baseline())
+    assert cmp["ok"], cmp
 
 
-def test_chunker_v2_regression_is_caught(run_v2):
-    ev = evals.evaluate(run_v2)
+def test_chunker_v2_regression_is_caught(suite_eval_v2):
+    ev = suite_eval_v2
     cmp = evals.compare(ev, evals.load_baseline())
     assert not cmp["ok"]
-    assert {"REQ-3.3", "REQ-5.3"} <= set(cmp["broken"])
-    assert ev["categories"].get("missed_table_value", 0) >= 4
+    assert {"REQ-3.3", "REQ-5.3", "HRD-3.3", "HRD-5.1"} <= set(cmp["broken"])
+    assert ev["categories"].get("missed_table_value", 0) >= 8
     assert ev["categories"].get("wrong_page", 0) >= 1
     assert ev["not_met"]["recall"] < 1.0
 

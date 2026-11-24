@@ -13,10 +13,13 @@ UNITS = {
     "GOhm": ("ohm", D("1e9")), "MOhm": ("ohm", D("1e6")), "kOhm": ("ohm", D("1e3")), "Ohm": ("ohm", D(1)),
     "kV": ("volt", D(1000)), "V": ("volt", D(1)), "mV": ("volt", D("0.001")),
     "Hz": ("hertz", D(1)), "A": ("ampere", D(1)), "mA": ("ampere", D("0.001")),
-    "K": ("kelvin", D(1)), "s": ("second", D(1)),
+    "K": ("kelvin", D(1)), "s": ("second", D(1)), "ms": ("second", D("0.001")),
+    "kW": ("watt", D(1000)), "W": ("watt", D(1)),
+    "uA": ("ampere", D("1e-6")), "kHz": ("hertz", D(1000)),
+    "dB": ("decibel", D(1)), "%": ("percent", D(1)),
 }
-_ALIASES = {"Ω": "Ohm", "Ω": "Ohm"}
-QTY = re.compile(r"(?P<num>[-+]?\d+(?:\.\d+)?)\s*(?P<unit>[GMk]?(?:Ohm|Ω|Ω)|kV|mV|V|Hz|mA|A|K|s)(?![A-Za-z])")
+_ALIASES = {"Ω": "Ohm", "Ω": "Ohm", "µA": "uA", "μA": "uA"}
+QTY = re.compile(r"(?P<num>[-+]?\d+(?:\.\d+)?)\s*(?P<unit>[GMk]?(?:Ohm|Ω|Ω)|kV|mV|V|kHz|Hz|[µμu]A|mA|A|kW|W|K|ms|s|dB|%)(?![A-Za-z])")
 OPS = {"<=": lambda a, b: a <= b, ">=": lambda a, b: a >= b, "<": lambda a, b: a < b, ">": lambda a, b: a > b}
 
 
@@ -26,8 +29,21 @@ def _unit_key(u):
     return u
 
 
+_DEC_COMMA = re.compile(r"(?<![\d.,])(\d+),(\d+)(?![\d,])")
+
+
+def _fix_commas(m):
+    whole, frac = m.group(1), m.group(2)
+    if len(frac) == 3 and whole != "0" and len(whole) <= 3:  # 1,500 -> thousands separator
+        return whole + frac
+    return whole + "." + frac  # 0,62 / 12,5 -> decimal comma
+
+
 def parse_quantity(text, family=None):
-    """First quantity in text (optionally of a given family) -> (base_value, family, unit, raw) or None."""
+    """First quantity in text (optionally of a given family) -> (base_value, family, unit, raw) or None.
+
+    Decimal commas are read as decimals ("0,62 mA"); "1,500 V" is read as a thousands separator."""
+    text = _DEC_COMMA.sub(_fix_commas, text)
     for m in QTY.finditer(text):
         unit = _unit_key(m["unit"])
         if unit not in UNITS:
@@ -127,6 +143,8 @@ def limit(req, corpus, provider=None):
             diags.append("UNIT_UNRESOLVED")
             continue
         rows.append((c, line, q))
+    if any(r[0].kind == "table" for r in rows):  # a results table outranks a prose mention of the same quantity
+        rows = [r for r in rows if r[0].kind == "table"]
     if not rows:
         return Result(req["id"], req["text"], INSUFFICIENT, [], "No matching measurement row found.",
                       diags + ["NO_ROW"], "limit")

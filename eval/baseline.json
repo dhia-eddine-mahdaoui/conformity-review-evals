@@ -2,279 +2,362 @@
   "rows": [
     {
       "id": "REQ-1.1",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "declaration_of_conformity p1"
-      ],
-      "wanted": [
-        "declaration_of_conformity p1"
-      ],
-      "rationale": "All expected statements found.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-1.2",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "declaration_of_conformity p1",
-        "risk_assessment p1",
-        "test_report p3"
-      ],
-      "wanted": [
-        "declaration_of_conformity p1",
-        "risk_assessment p1",
-        "test_report p3"
-      ],
-      "rationale": "Values agree: AW-200 (declaration_of_conformity p1); AW-200 (test_report p3); AW-200 (risk_assessment p1).",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-2.1",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "declaration_of_conformity p1",
-        "test_report p3"
-      ],
-      "wanted": [
-        "declaration_of_conformity p1",
-        "test_report p3"
-      ],
-      "rationale": "Values agree: 230 V (declaration_of_conformity p1); 230 V (test_report p3).",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-2.2",
+      "case": "core",
       "expected": "not_met",
       "got": "not_met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "declaration_of_conformity p1",
-        "test_report p3"
-      ],
-      "wanted": [
-        "declaration_of_conformity p1",
-        "test_report p3"
-      ],
-      "rationale": "Values disagree: 60 Hz (declaration_of_conformity p1); 50 Hz (test_report p3).",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-2.3",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "test_report p11",
-        "test_report p3"
-      ],
-      "wanted": [
-        "test_report p11",
-        "test_report p3"
-      ],
-      "rationale": "Values agree: 2.5 A (test_report p3); 2.5 A (test_report p11).",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-3.1",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "test_report p7"
-      ],
-      "wanted": [
-        "test_report p7"
-      ],
-      "rationale": "All 2 row(s) satisfy >= 100 MOhm.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-3.2",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "test_report p8"
-      ],
-      "wanted": [
-        "test_report p8"
-      ],
-      "rationale": "All expected statements found.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-3.3",
+      "case": "core",
       "expected": "not_met",
       "got": "not_met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "test_report p9"
-      ],
-      "wanted": [
-        "test_report p9"
-      ],
-      "rationale": "0.62 mA violates <= 0.5 mA (p9).",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-3.4",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "test_report p10"
-      ],
-      "wanted": [
-        "test_report p10"
-      ],
-      "rationale": "All 3 row(s) satisfy <= 40 K.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-4.1",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "declaration_of_conformity p2"
-      ],
-      "wanted": [
-        "declaration_of_conformity p2"
-      ],
-      "rationale": "All expected statements found.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-4.2",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "declaration_of_conformity p3"
-      ],
-      "wanted": [
-        "declaration_of_conformity p3"
-      ],
-      "rationale": "All expected statements found.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-5.1",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "risk_assessment p4"
-      ],
-      "wanted": [
-        "risk_assessment p4"
-      ],
-      "rationale": "Matching passage shows the item assessed and closed.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-5.2",
+      "case": "core",
       "expected": "met",
       "got": "met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "risk_assessment p4"
-      ],
-      "wanted": [
-        "risk_assessment p4"
-      ],
-      "rationale": "Matching passage shows the item assessed and closed.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-5.3",
+      "case": "core",
       "expected": "not_met",
       "got": "not_met",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [
-        "risk_assessment p5"
-      ],
-      "wanted": [
-        "risk_assessment p5"
-      ],
-      "rationale": "1 hazard(s) with High residual risk lack completed verification.",
-      "diagnostics": []
+      "category": null
     },
     {
       "id": "REQ-6.1",
+      "case": "core",
       "expected": "insufficient",
       "got": "insufficient",
-      "verdict_ok": true,
-      "page_ok": true,
       "passed": true,
-      "category": null,
-      "cited": [],
-      "wanted": [],
-      "rationale": "Not found: 1 of 1 expected statements.",
-      "diagnostics": [
-        "NO_MATCH"
-      ]
+      "category": null
+    },
+    {
+      "id": "HRD-1.1",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-1.2",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.1",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.2",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.3",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.4",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.5",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.6",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.1",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.2",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.3",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.4",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.5",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.6",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.7",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.8",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.9",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.10",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-4.1",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-4.2",
+      "case": "hard",
+      "expected": "insufficient",
+      "got": "insufficient",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-4.3",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-4.4",
+      "case": "hard",
+      "expected": "insufficient",
+      "got": "insufficient",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-5.1",
+      "case": "hard",
+      "expected": "not_met",
+      "got": "not_met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-5.2",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-5.3",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-2.7",
+      "case": "hard",
+      "expected": "met",
+      "got": "insufficient",
+      "passed": false,
+      "category": "missed_evidence"
+    },
+    {
+      "id": "HRD-3.12",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
+    },
+    {
+      "id": "HRD-3.13",
+      "case": "hard",
+      "expected": "met",
+      "got": "met",
+      "passed": true,
+      "category": null
     }
   ],
-  "verdict_accuracy": 1.0,
-  "page_accuracy": 1.0,
+  "verdict_accuracy": 0.9767441860465116,
+  "page_accuracy": 0.9767441860465116,
   "not_met": {
     "precision": 1.0,
     "recall": 1.0,
     "f1": 1.0,
-    "tp": 3,
+    "tp": 12,
     "fp": 0,
     "fn": 0
   },
-  "categories": {},
-  "passed": 15,
-  "total": 15
+  "categories": {
+    "missed_evidence": 1
+  },
+  "passed": 42,
+  "total": 43
 }

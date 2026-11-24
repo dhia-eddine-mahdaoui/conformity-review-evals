@@ -1,0 +1,4 @@
+# Eval suite: each case is a document set, a checklist and hand-labelled gold outcomes.
+cases:
+  - {name: core, title: "AW-200 power supply", data: data/techfile, requirements: data/requirements.yaml, gold: eval/gold.yaml}
+  - {name: hard, title: "BX-90 drive (hard set)", data: data/techfile_hard, requirements: data/requirements_hard.yaml, gold: eval/gold_hard.yaml}
