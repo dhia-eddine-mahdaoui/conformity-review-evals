@@ -12,7 +12,7 @@ structure. DEFAULT is what the pipeline uses when nothing is requested.
 """
 from .model import Chunk
 
-DEFAULT = "v1"
+DEFAULT = "v2"
 WINDOW = 1200
 
 
